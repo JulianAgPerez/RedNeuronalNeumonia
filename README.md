@@ -4,7 +4,7 @@ Nombre: PulmonIA
 Nota: revisar ramas 
 
 # Link de descarga del proyecto
-https://drive.google.com/drive/folders/1H-OxunEOUICSYBOWNcznxql2QHwT4oJc
+https://drive.google.com/file/d/1CfPI548la_-lU-KsnY6DHuawIpgyEg5n/view?usp=sharing
 
 # Descarga de PIL (Python Imaging Library) en Ubuntu para el uso de la interfaz gráfica:
 
