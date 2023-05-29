@@ -1,8 +1,12 @@
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 from PIL import ImageTk, Image
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+import numpy as np
 
-#interfaz gráfica.  V0.3
+#interfaz gráfica. V0.3
 
 """
 FALTA AGREGAR:
@@ -10,6 +14,30 @@ FALTA AGREGAR:
 -Ajustar cuadro de img
 """
 
+# Cargar el modelo de la red neuronal convolucional pre-entrenada
+model = tf.keras.models.load_model("PulmonIA.h5")
+
+def analizar_imagen():
+    imagen = filedialog.askopenfilename()
+    image = Image.open(imagen).resize((150, 150))
+    
+    # Preprocesamiento de la imagen
+    imagen_array = np.array(image)
+    imagen_array = imagen_array / 255.0
+    imagen_array = np.expand_dims(imagen_array, axis=0)
+    
+    # Realizar la predicción con el modelo
+    prediccion = model.predict(imagen_array)
+    
+    # Obtener el resultado de la predicción
+    if prediccion[0][0] > 0.5:
+        resultado = "El paciente podría tener neumonía"
+    else:
+        resultado = "El paciente no tiene neumonía"
+    
+    messagebox.showinfo("Resultado", resultado)
+    
+    
 root = Tk()
 
 root.title('PulmonIA')
@@ -42,7 +70,7 @@ mostrar_image.pack()
 # Función para cargar y analizar la imagen seleccionada
 def agregar_imagen():
    imagen = filedialog.askopenfilename()
-   image = Image.open(imagen).resize((200, 300))
+   image = Image.open(imagen).resize((250, 300))
    image_tk = ImageTk.PhotoImage(image)
    mostrar_image.configure(image=image_tk)
    mostrar_image.image = image_tk
@@ -59,6 +87,10 @@ def salir():
 btn_agregar_imagen = Button(root, text="Agregar imagen", command=agregar_imagen, width=17)
 btn_agregar_imagen.configure(font=("Ebrima", 11, "bold"))
 btn_agregar_imagen.pack(pady=150) #Margen
+
+analizar_button = Button(root, text="Analizar imagen", command=analizar_imagen, width=15, state=DISABLED)
+analizar_button.configure(font=("Ebrima", 11, "bold"))
+analizar_button.pack(pady=10)
 
 btn_salir = Button(root, text="Salir", command=salir, width=10)
 btn_salir.configure(font=("Ebrima", 11, "bold"))
