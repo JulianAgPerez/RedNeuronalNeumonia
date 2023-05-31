@@ -17,12 +17,17 @@ FALTA AGREGAR:
 # Cargar el modelo de la red neuronal convolucional pre-entrenada
 model = tf.keras.models.load_model("PulmonIA.h5")
 
+# Variable para almacenar la imagen seleccionada
+imagen_seleccionada = None
+
 def analizar_imagen():
-    imagen = filedialog.askopenfilename()
-    image = Image.open(imagen).resize((150, 150))
+    if imagen_seleccionada is None:
+        messagebox.showwarning("Advertencia", "Por favor, primero seleccione una imagen.")
+        return
     
     # Preprocesamiento de la imagen
-    imagen_array = np.array(image)
+    imagen = Image.open(imagen_seleccionada).resize((150, 150))
+    imagen_array = np.array(imagen)
     imagen_array = imagen_array / 255.0
     imagen_array = np.expand_dims(imagen_array, axis=0)
     
@@ -31,12 +36,11 @@ def analizar_imagen():
     
     # Obtener el resultado de la predicción
     if prediccion[0][0] > 0.5:
-        resultado = "El paciente podría tener neumonía"
+        resultado = "El paciente podría tener neumonía."
     else:
-        resultado = "El paciente no tiene neumonía"
+        resultado = "El paciente no tiene neumonía."
     
     messagebox.showinfo("Resultado", resultado)
-    
     
 root = Tk()
 
@@ -61,20 +65,15 @@ Label(root, text="RADIOGRAFÍA DE TÓRAX", pady=10, bg="deep sky blue", font=("E
 mostrar_image = Label(root, bg="deep sky blue")
 mostrar_image.pack()
 
-#150 x 150 imagenes que recibe la red 
-
-# Cuadro blanco para mostrar la imagen
-#cuadro_blanco = Label(root, bg="white", width=30, height=18)
-#cuadro_blanco.pack()
-
 # Función para cargar y analizar la imagen seleccionada
 def agregar_imagen():
-   imagen = filedialog.askopenfilename()
-   image = Image.open(imagen).resize((250, 300))
+   global imagen_seleccionada
+   imagen_seleccionada = filedialog.askopenfilename()
+   image = Image.open(imagen_seleccionada).resize((250, 300))
    image_tk = ImageTk.PhotoImage(image)
    mostrar_image.configure(image=image_tk)
    mostrar_image.image = image_tk
-   #cuadro_blanco.destroy()
+   analizar_button.configure(state=NORMAL)
    btn_agregar_imagen.destroy()  # Eliminar el botón después de utilizarlo
   
    
