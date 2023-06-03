@@ -3,22 +3,16 @@ from tkinter import filedialog
 from tkinter import messagebox
 from PIL import ImageTk, Image
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import numpy as np
 
-#interfaz gráfica. V0.5
+#interfaz gráfica. 
+version = 1.1
 
 # Cargar el modelo de la red neuronal convolucional pre-entrenada
 model = tf.keras.models.load_model("PulmonIA.h5")
 
-# Variable para almacenar la imagen seleccionada
-imagen_seleccionada = None
-
 def analizar_imagen():
-    if imagen_seleccionada is None:
-        messagebox.showwarning("Advertencia", "Por favor, primero seleccione una imagen.")
-        return
-    
     # Preprocesamiento de la imagen
     imagen = Image.open(imagen_seleccionada).convert("RGB").resize((150, 150))
     imagen_array = np.array(imagen)
@@ -41,7 +35,6 @@ root = Tk()
 root.title('PulmonIA')
 root.configure(bg= "deep sky blue")
 
-
 #CENTRALIZADO DE VENTANA
 # Obtiene el ancho y la altura de la pantalla
 ancho_pantalla = root.winfo_screenwidth()
@@ -53,6 +46,10 @@ altura_ventana = 550
 x = (ancho_pantalla - ancho_ventana) // 2
 y = (altura_pantalla - altura_ventana) // 2
 root.geometry(f"{ancho_ventana}x{altura_ventana}+{x}+{y}")
+
+disclaimer = "Este sistema de diagnóstico de imágenes tiene una precisión cercana al 96% para detectar neumonía y no pretende reemplazar el diagnostico de un profesional. Esta herramienta debe ser usada por el correspondiente profesional de la salud para determinar el diagnostico."
+
+messagebox.showwarning("Advertencia", disclaimer)
 
 Label(root, text="RADIOGRAFÍA DE TÓRAX", pady=10, bg="deep sky blue", font=("Ebrima", 12, "bold")).pack(pady=5)
 
@@ -67,26 +64,44 @@ def agregar_imagen():
    image_tk = ImageTk.PhotoImage(image)
    mostrar_image.configure(image=image_tk)
    mostrar_image.image = image_tk
-   analizar_button.configure(state=NORMAL)
+   btn_analiza.configure(state=NORMAL)
    btn_agregar_imagen.config(text="Volver a añadir imagen") #Renombra el botón "Agregar imagen"
-   
    
 # Función para salir de la aplicación
 def salir():
-    root.destroy()   
+    resultado = messagebox.askokcancel("Salir", "¿Deseas salir?")
+    if resultado:
+        root.destroy()  
+         
     
-    
+# Hace que cambie el color del botón al pasar el mouse por arriba   
+def eventos_de_botones(boton):
+    boton.bind("<Enter>", lambda event: boton.config(bg="white"))
+    boton.bind("<Leave>", lambda event: boton.config(bg="lightblue"))
+
+#Label fijo de arriba a la izquierda(PulmonIA)
+label_nombre = Label(root, text="PulmonIA", bg="lightgray", fg="black")
+label_nombre.place(x=30, y=10)
+label_nombre.configure(font=('sans serif',24, "bold"))
+
+# Label fijo de arriba a la izquierda(Version)
+label_version = Label(root, text="version " + str(version), bg="lightgray", fg="black", width=10)
+label_version.place(x=30, y=515)
+
 #botones 
 btn_agregar_imagen = Button(root, text="Agregar imagen", width=25, command=agregar_imagen)
 btn_agregar_imagen.configure(font=("Ebrima", 11, "bold"))
 btn_agregar_imagen.pack(pady=15) #Margen
+eventos_de_botones(btn_agregar_imagen)
 
-analizar_button = Button(root, text="Analizar imagen", command=analizar_imagen, width=25, state=DISABLED)
-analizar_button.configure(font=("Ebrima", 11, "bold"))
-analizar_button.pack(pady=10)
+btn_analiza = Button(root, text="Analizar imagen", command=analizar_imagen, width=25, state=DISABLED)
+btn_analiza.configure(font=("Ebrima", 11, "bold"))
+btn_analiza.pack(pady=10)
+eventos_de_botones(btn_analiza)
 
 btn_salir = Button(root, text="Salir", command=salir, width=10)
 btn_salir.configure(font=("Ebrima", 11, "bold"))
 btn_salir.pack(side="bottom", anchor="se", pady=5, padx=20) #Margen 
+eventos_de_botones(btn_salir)
 
 root.mainloop()
