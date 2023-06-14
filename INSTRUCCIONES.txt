@@ -1,0 +1,43 @@
+Para compilar el programa: 
+Descargar PulmonIA desde: https://drive.google.com/file/d/1duNEs6qza1fJpH3atPhz0QBF--dFXdkN/view 
+Instalar Python 3.10.6 o posterior
+Instalar pip3
+Instalar Tkinter
+Instalar pillow
+Instalar TensorFlow
+Instalar Keras
+instalar numpy
+Descarga de PIL (Python Imaging Library) en Ubuntu para el uso de la interfaz gráfica:
+1- Abrir la terminal
+2- Si PIL no está instalado, ejecute los siguientes comandos:        
+sudo apt update  
+sudo apt install python3-pip
+
+3- Y por último:     
+pip3 install pillow
+
+Descarga/instalacion de librerias externas
+Para Ubuntu; Colocar los siguientes comandos en la consola/terminal IMPORTANTE: SI TIENE TANTO PYTHON2 COMO PYTHON 3 DEBE USAR “pip3” EN VEZ DE “pip”.
+sudo apt install python3-tk
+
+pip install Pillow
+
+pip install tensorflow keras
+
+pip install numpy
+
+esto es en caso de que presente algún error:
+sudo apt-get install python3-pil.imagetk 
+
+Instrucciones para abrir y usar el programa
+1- Desde la consola, acceder a la carpeta del proyecto (o abrir la terminal en la misma)
+
+2- Una vez ubicado dentro de la carpeta del proyecto, colocar el siguiente comando
+python3 PulmonIA1.1.4.py
+
+3- Agregar la radiografía a evaluar tras clickear en el boton "Agregar imagen"
+
+
+4- Clickear en el botón de "Analizar imagen" para obtener el resultado del análisis
+
+
