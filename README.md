@@ -56,4 +56,4 @@ Es de nuestro agrado informar que hemos logrado realizar el entrenamiento de la 
 A dia de hoy tenemos el proyecto funcionando sujeto a pequeñas modificaciones de la GUI por lo que su funcionamiento está garantizado, hemos llegado a la estimacion de que tiene un 96% de efectividad de detección, por lo que sin dudas puede ser un muy buen complemento para un profesional de la salud.
 
 # 13/6/23
-Buen día. La integración de la interfaz con el modelo entrenada, los resultados del proyecto y su ejecución ha sido exitosa en Linux! Esperamos su revisión y devolución. Y que todos los datos proporcionados para correr el código sean eficientes.
+Buen día. La integración de la interfaz con el modelo entrenado, los resultados del proyecto y su ejecución ha sido exitosa en Linux! Esperamos su revisión y devolución. Y que todos los datos proporcionados para correr el código sean eficientes.
