@@ -20,8 +20,11 @@ pip3 install pillow
 -Para Ubuntu; Colocar los siguientes comandos en la consola/terminal
 
 pip install tkinter
+
 pip install Pillow
+
 pip install keras
+
 pip install numpy
 
 # Instrucciones para abrir y usar el programa
