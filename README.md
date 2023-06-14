@@ -55,5 +55,3 @@ Es esencial aprovechar los beneficios de la tecnología para mejorar la atenció
 Es de nuestro agrado informar que hemos logrado realizar el entrenamiento de la red y su conexión con la interfaz gráfica de usuario.
 A dia de hoy tenemos el proyecto funcionando sujeto a pequeñas modificaciones de la GUI por lo que su funcionamiento está garantizado, hemos llegado a la estimacion de que tiene un 96% de efectividad de detección, por lo que sin dudas puede ser un muy buen complemento para un profesional de la salud.
 
-# 13/6/23
-Buen dia/tarde/noche, hemos tenido un pequeño contratiempo al intentar crear un ejecutable, debido a que no encontramos una solucion optamos por correr el programa desde la consola, anunciando así que finalmente hemos logrado terminar de manera oficial el proyecto.
