@@ -27,6 +27,10 @@ pip install keras
 
 pip install numpy
 
+esto es en caso de que presente algun error:
+-sudo apt dpkg -i python3-pip
+-sudo apt-get install python3-pil.imagetk 
+
 # Instrucciones para abrir y usar el programa
 1- Desde la consola, acceder a la carpeta del proyecto (o abrir la terminal en la misma)
 
