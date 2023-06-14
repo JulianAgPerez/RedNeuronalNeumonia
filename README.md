@@ -29,8 +29,6 @@ pip install numpy
 
 esto es en caso de que presente algun error:
 
--sudo apt dpkg -i python3-pip
-
 -sudo apt-get install python3-pil.imagetk 
 
 
